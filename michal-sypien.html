@@ -75,7 +75,7 @@
       ],
       "worksFor": { "@id": "https://sypien.pl/#ncs-sypien" },
       "workLocation": { "@id": "https://sypien.pl/#ncs-sypien" },
-      "telephone": "+48338227133",
+      "telephone": ["+48338227133", "+48730227133"],
       "email": "recepcja@sypien.pl",
       "address": {
         "@type": "PostalAddress",
@@ -96,7 +96,7 @@
       "@id": "https://sypien.pl/#ncs-sypien",
       "name": "NCS Sypień",
       "url": "https://sypien.pl",
-      "telephone": "+48338227133",
+      "telephone": ["+48338227133", "+48730227133"],
       "email": "recepcja@sypien.pl",
       "address": {
         "@type": "PostalAddress",
@@ -623,6 +623,7 @@ h1 {
   transition: border-color .45s var(--ease), color .45s var(--ease);
 }
 .site-footer a:hover, .site-footer a:focus-visible { border-color: var(--brass); color: var(--brass); }
+.site-footer .contact-email { display: inline-block; margin-top: 9px; }
 .site-footer .hours { font-size: 15.5px; line-height: 1.72; color: var(--bone); }
 .site-footer .colophon {
   max-width: none;
@@ -851,7 +852,8 @@ h1 {
       <p class="contact-label">Rejestracja</p>
       <address>
         <a href="tel:+48338227133">(+48) 338 227 133</a><br>
-        <a href="mailto:recepcja@sypien.pl">recepcja@sypien.pl</a>
+        <a href="tel:+48730227133">(+48) 730 227 133</a><br>
+        <a class="contact-email" href="mailto:recepcja@sypien.pl">recepcja@sypien.pl</a>
       </address>
       <p class="hours" style="margin-top:12px">Pon–Pt 8:00–20:00</p>
     </div>
