@@ -684,8 +684,10 @@ h1 {
 
 @media (max-width: 560px) {
   body { font-size: 16.5px; }
-  .credentials li { flex-wrap: wrap; }
-  .cred-city { margin-left: 0; text-align: left; }
+  /* w wąskiej kolumnie miasto trafia pod instytucję w KAŻDYM wierszu —
+     inaczej krótkie miasta zostają w linii, a długie spadają pod spód */
+  .credentials li { display: block; }
+  .cred-city { display: block; margin-top: 7px; text-align: left; }
   .membership { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .testimonial { padding-left: 22px; }
   .actions { gap: 18px 26px; }
