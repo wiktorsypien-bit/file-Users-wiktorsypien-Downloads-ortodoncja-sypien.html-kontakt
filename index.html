@@ -353,9 +353,8 @@ h2 {
   padding-bottom: clamp(84px, 10vw, 124px);
 }
 
-/* Ramka portretu.
-   PODMIANA: wstaw wewnątrz .portrait-frame znacznik
-   <img src="michal-sypien.jpg" alt="Portret dr. Michała Sypienia"> */
+/* Ramka portretu. Znacznik <img> jest już w kodzie; jeśli pliku ze
+   zdjęciem brakuje, skrypt go usuwa i zostaje ramka z monogramem MS. */
 .portrait {
   width: clamp(148px, 22vw, 176px);
   margin-bottom: 44px;
@@ -761,9 +760,8 @@ h1 {
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <header class="hero wrap" id="hero">
     <figure class="portrait stage" style="--d:.05s">
-      <div class="portrait-frame" aria-hidden="true">
-        <!-- PODMIANA PORTRETU:
-             <img src="michal-sypien.jpg" alt="Portret dr. Michała Sypienia"> -->
+      <div class="portrait-frame">
+        <img src="michal-sypien.jpg" alt="Portret dr. Michała Sypienia" width="1200" height="1500" decoding="async">
       </div>
     </figure>
 
@@ -918,6 +916,16 @@ h1 {
   'use strict';
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* brak pliku ze zdjeciem -> zdejmij <img>, zostaje ramka z monogramem */
+  var portrait = document.querySelector('.portrait-frame img');
+  if (portrait) {
+    var dropPortrait = function () {
+      if (portrait.parentNode) { portrait.parentNode.removeChild(portrait); }
+    };
+    portrait.addEventListener('error', dropPortrait);
+    if (portrait.complete && portrait.naturalWidth === 0) { dropPortrait(); }
+  }
 
   /* ── płynne przewijanie po kliknięciu w szynę ──────────────── */
   var railLinks = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
