@@ -27,8 +27,8 @@ było drugi raz przekopywać 158 zdjęć.
 
 | # | Pozycja na stronie                                    | Nazwa pliku                  | Nr  | Stan |
 |---|-------------------------------------------------------|------------------------------|-----|------|
-| 1 | Absolwent / Graduate — Kois Center, Seattle           | `kois-center.jpg`            | 141 | **brak pliku** — opis zgodny z certyfikatem |
-| 2 | Uczestnictwo w kursie — Bicon Institute, Wiedeń       | `bicon-curriculum.jpg`       | 17  | **brak pliku** — opis zgodny z certyfikatem |
+| 1 | Mentor — Kois Center, Seattle                         | *(brak `data-cert`)*         | 141 | **celowo bez zdjęcia** — patrz niżej |
+| 2 | Certyfikowany wykładowca — Curriculum Bicon, Boston   | *(brak `data-cert`)*         | 17  | **celowo bez zdjęcia** — patrz niżej |
 | 3 | Zaawansowana chirurgia — Steigmann Institute          | `steigmann-institute.jpg`    | —   | w repo — ⚠ patrz uwaga o temacie |
 | 4 | Masterclass tkanek miękkich — Hürzeler/Zuhr           | `hurzeler-zuhr.jpg`          | —   | w repo — ⚠ patrz uwaga o temacie |
 | 5 | Europejski Tytuł Implantologa — Goethe University     | `goethe-university-ects.jpg` | —   | brak w całej galerii (sprawdzone OCR + ręcznie) |
@@ -38,41 +38,42 @@ Nazwa musi się zgadzać co do znaku, łącznie z rozszerzeniem `.jpg`.
 Jeśli wolisz inne rozszerzenie, zmień je też w atrybucie `data-cert`
 w `index.html` **i** w `en/index.html`.
 
-## Zgodność opisów z certyfikatami
+## Dlaczego wiersze 1 i 2 nie mają `data-cert`
 
-Wszystkie cztery dostępne certyfikaty zostały obejrzane i przepisane.
-Opisy pozycji 1 i 2 zostały poprawione tak, żeby zgadzały się z tym,
-co realnie jest na papierze.
+Opisy „Mentor — Kois Center" i „Certyfikowany wykładowca — Curriculum
+Bicon, Boston" **zostają w oryginalnym brzmieniu**, ale świadomie nie
+podpięto pod nie żadnego zdjęcia: w galerii na sypien.pl nie ma
+dokumentu, który tych ról dowodzi.
 
-| # | Podpis na stronie (po korekcie) | Treść certyfikatu | Zgodność |
+Dostępne kandydatury zostały obejrzane i **odrzucone jako dowód**:
+
+| Wiersz | Kandydat | Co jest na papierze | Dlaczego odrzucony |
 |---|---|---|---|
-| 1 | Absolwent / Graduate — Kois Center, Seattle | „has successfully earned the membership level of **Graduate**", 5 XI 2016, podpis John C. Kois | ✅ |
-| 2 | Uczestnictwo w kursie / Course participation — Bicon Institute, Wiedeń | „For the **attendance** at the course «Why Do We Need Short Implants?»", Wiedeń, 10–11 II 2017, 14 godzin, bicon + CMF Institut Wien | ✅ |
-| 3 | Zaawansowana chirurgia — Steigmann | „**Soft Tissue Management**", Module 5, 2016 | ⚠ temat |
-| 4 | Masterclass tkanek miękkich — Hürzeler/Zuhr | „**Advanced Surgical Procedures** in Periodontology and Implant Therapy", 2017–2018 | ⚠ temat |
+| 1 Mentor — Kois Center | galeria nr **141** | „has successfully earned the membership level of **Graduate**", 5 XI 2016, podpis John C. Kois | *Graduate* to ukończenie kursu, nie rola mentorska |
+| 2 Certyfikowany wykładowca — Curriculum Bicon, Boston | galeria nr **17** | „For the **attendance** at the course «Why Do We Need Short Implants?»", **Wiedeń**, 10–11 II 2017, 14 godzin, bicon + CMF Institut Wien | uczestnictwo w kursie ≠ status wykładowcy; Wiedeń ≠ Boston |
 
-## Do rozstrzygnięcia przed publikacją
+Ta tabela zostaje w repo jako zapis, **dlaczego** numery 141 i 17 nie
+zostały użyte — żeby ktoś za pół roku nie „naprawił" tego, wgrywając je
+z powrotem.
 
-**Reszta strony nadal mówi „Mentor" i „Boston".** Korekta objęła tylko
-listę w sekcji „Uznanie". Te same twierdzenia stoją jeszcze w trzech
-miejscach każdego pliku i teraz przeczą poprawionym wierszom:
+**Czego potrzeba, żeby te wiersze dało się rozwinąć:** dokumentu
+mentorskiego z Kois Center i lektorskiego z BICON Center w Bostonie.
+Biogram na stronie (linia 959) mówi, że Michał uczy jako certyfikowany
+wykładowca BICON od 2015, więc taki papier prawdopodobnie istnieje —
+po prostu nie ma go w galerii. Gdy się znajdzie, wystarczy wrzucić plik
+do `certs/` i dopisać `data-cert` do wiersza.
 
-| Linia | Miejsce | Treść |
-|---|---|---|
-| 8 | `<meta name="description">` — to widać w Google | „**Mentor** Kois Center, Seattle" / „**Mentor** at the Kois Center" |
-| 840 | linia roli w HERO, największy tekst na stronie | „· **Mentor** Kois Center, Seattle" |
-| 959 | biogram | „certyfikowany **wykładowca** BICON Center w **Bostonie**" |
-
-Do decyzji: albo zejść z tych twierdzeń w całym pliku, albo — jeśli
-Michał faktycznie jest mentorem Kois i wykładowcą BICON w Bostonie —
-przywrócić mocniejsze opisy w liście i **nie** podpinać pod nie
-wiedeńskiego certyfikatu, bo to nie jest dowód na tę rolę. Biogram
-sugeruje, że rola lektorska istnieje naprawdę, tylko nie ma jej
-udokumentowanej w galerii na sypien.pl.
+## Pozostałe do rozstrzygnięcia
 
 **Poz. 3 i 4 — tematy zamienione.** Instytucje pasują, ale wiersz o
-chirurgii pokazuje papier o tkankach miękkich i odwrotnie. Do decyzji:
-zamienić opisy 3↔4, czy zostawić.
+chirurgii pokazuje papier o tkankach miękkich i odwrotnie:
+
+| Wiersz na stronie | Treść certyfikatu |
+|---|---|
+| 3. Zaawansowana chirurgia — Steigmann | „Soft Tissue Management", Module 5, 2016 |
+| 4. Masterclass tkanek miękkich — Hürzeler/Zuhr | „Advanced Surgical Procedures in Periodontology and Implant Therapy", 2017–2018 |
+
+Do decyzji: zamienić opisy 3↔4, czy zostawić.
 
 ## Wymagania techniczne
 
