@@ -27,8 +27,8 @@ było drugi raz przekopywać 158 zdjęć.
 
 | # | Pozycja na stronie                                    | Nazwa pliku                  | Nr  | Stan |
 |---|-------------------------------------------------------|------------------------------|-----|------|
-| 1 | Mentor — Kois Center, Seattle                         | `kois-center.jpg`            | 141 | **brak pliku** — zidentyfikowany, do wgrania |
-| 2 | Certyfikowany wykładowca — Curriculum Bicon, Boston   | `bicon-curriculum.jpg`       | 17  | **brak pliku** — ⚠ do weryfikacji, patrz niżej |
+| 1 | Mentor — Kois Center, Seattle                         | `kois-center.jpg`            | 141 | **brak pliku** — treść obejrzana, ⚠ nie zgadza się z opisem |
+| 2 | Certyfikowany wykładowca — Curriculum Bicon, Boston   | `bicon-curriculum.jpg`       | 17  | **brak pliku** — treść obejrzana, ⚠ nie zgadza się z opisem |
 | 3 | Zaawansowana chirurgia — Steigmann Institute          | `steigmann-institute.jpg`    | —   | w repo — ⚠ patrz uwaga o temacie |
 | 4 | Masterclass tkanek miękkich — Hürzeler/Zuhr           | `hurzeler-zuhr.jpg`          | —   | w repo — ⚠ patrz uwaga o temacie |
 | 5 | Europejski Tytuł Implantologa — Goethe University     | `goethe-university-ects.jpg` | —   | brak w całej galerii (sprawdzone OCR + ręcznie) |
@@ -40,26 +40,34 @@ w `index.html` **i** w `en/index.html`.
 
 ## Otwarte pytania do Michała
 
-**Bicon (poz. 2).** Numer 17 to jedyne zdjęcie z marką Bicon w całej
-galerii: udział w kursie „Why Do We Need Short Implants?", Wiedeń,
-luty 2017, CMF Institut Wien. Opis na stronie mówi „Certyfikowany
-wykładowca — Curriculum Bicon, **Boston**". To inne miasto i inny
-charakter — uczestnictwo w kursie, nie status wykładowcy. Możliwe, że
-istnieje osobny certyfikat lektorski z Bostonu, którego nie ma na
-sypien.pl. **Do potwierdzenia przed publikacją.**
+Wszystkie cztery dostępne certyfikaty zostały obejrzane i przepisane.
+W trzech przypadkach dokument mówi coś innego niż podpis na stronie.
+**Do rozstrzygnięcia przed publikacją** — pod nagłówkiem obiecującym
+więcej niż widać na papierze certyfikat działa przeciwko stronie.
 
-**Steigmann i Hürzeler/Zuhr (poz. 3 i 4).** Instytucje zgadzają się,
-ale tematy na certyfikatach wyglądają na zamienione względem podpisów
-na stronie:
+| # | Podpis na stronie | Co jest na certyfikacie |
+|---|---|---|
+| 1 | **Mentor** — Kois Center, Seattle | „has successfully earned the membership level of **Graduate**", 5 XI 2016, podpis John C. Kois |
+| 2 | **Certyfikowany wykładowca** — Curriculum Bicon, **Boston** | „For the **attendance** at the course «Why Do We Need Short Implants?»", **Wiedeń**, 10–11 II 2017, 14 godzin, bicon + CMF Institut Wien |
+| 3 | Zaawansowana chirurgia — Steigmann | „**Soft Tissue Management**", Module 5, 2016 |
+| 4 | Masterclass tkanek miękkich — Hürzeler/Zuhr | „**Advanced Surgical Procedures** in Periodontology and Implant Therapy", 2017–2018 |
 
-| Wiersz na stronie | Treść certyfikatu |
-|---|---|
-| 3. Zaawansowana chirurgia — Steigmann | „Soft Tissue Management", Module 5, 2016 |
-| 4. Masterclass tkanek miękkich — Hürzeler/Zuhr | „Advanced Surgical Procedures in Periodontology and Implant Therapy", 2017–2018 |
+**Poz. 1 — Kois Center.** Certyfikat potwierdza poziom członkostwa
+*Graduate*, czyli ukończenie kursu. Strona mówi *Mentor*, co w Kois
+Center jest odrębną, wyższą rolą dydaktyczną. Ten papier jej nie
+dowodzi. Albo istnieje osobny dokument mentorski, albo podpis na
+stronie trzeba zmienić na „Graduate".
 
-Czyli wiersz o chirurgii pokazuje papier o tkankach miękkich i
-odwrotnie. Do decyzji: zamienić opisy 3↔4, czy zostawić (jeśli opisują
-szerszy dorobek, a nie ten konkretny dokument).
+**Poz. 2 — Bicon.** Certyfikat potwierdza *uczestnictwo* w
+dwudniowym kursie w Wiedniu, współfirmowanym przez CMF Institut Wien.
+Strona mówi *certyfikowany wykładowca* i *Boston*. Nie zgadza się ani
+rola, ani miasto, ani charakter (kurs ≠ Curriculum). To jedyne zdjęcie
+z marką Bicon w całej galerii 158 pozycji.
+
+**Poz. 3 i 4 — tematy zamienione.** Instytucje pasują, ale wiersz o
+chirurgii pokazuje papier o tkankach miękkich i odwrotnie. Do decyzji:
+zamienić opisy 3↔4, czy zostawić (jeśli opisują szerszy dorobek, a nie
+ten konkretny dokument).
 
 ## Wymagania techniczne
 
