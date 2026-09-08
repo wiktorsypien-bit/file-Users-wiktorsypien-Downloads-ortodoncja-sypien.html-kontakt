@@ -558,10 +558,6 @@ h1 {
    ═══════════════════════════════════════════════════════════════ */
 .credentials { list-style: none; }
 .credentials li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px 28px;
   padding: 20px 0;
   border-bottom: 1px solid var(--hair);
 }
@@ -590,6 +586,76 @@ h1 {
   letter-spacing: .15em;
   color: var(--dim);
   text-align: right;
+}
+
+/* ── Wiersz uznania ────────────────────────────────────────────────
+   Układ przeniesiony z <li> na .cred-row, żeby wiersz wyglądał tak
+   samo niezależnie od tego, czy jest <div> (brak certyfikatu), czy
+   <button> (certyfikat jest i da się go rozwinąć).
+   Prawy margines jest zarezerwowany zawsze — dzięki temu miasta
+   stoją w jednej linii i wiersze z certyfikatem nie przeskakują. */
+.cred-row {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px 28px;
+  width: 100%;
+}
+/* Margines na znak "+" rezerwujemy dopiero wtedy, gdy w liscie jest
+   przynajmniej jeden certyfikat (klase dokłada skrypt). Bez zdjec
+   sekcja trzyma sie tej samej prawej krawedzi co reszta strony. */
+.credentials.has-certs .cred-row { padding-right: 26px; }
+button.cred-row {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+button.cred-row:focus-visible { outline: 1px solid var(--brass); outline-offset: 7px; }
+
+/* Znak "+" z dwóch włosowych kresek; po rozwinięciu obraca się w "×". */
+.cred-mark {
+  position: absolute;
+  right: 1px;
+  top: 7px;
+  width: 11px;
+  height: 11px;
+  opacity: .68;
+  transition: transform .55s var(--ease), opacity .3s var(--ease);
+}
+.cred-mark::before,
+.cred-mark::after { content: ""; position: absolute; background: var(--brass); }
+.cred-mark::before { left: 0; right: 0; top: 5px; height: 1px; }
+.cred-mark::after  { top: 0; bottom: 0; left: 5px; width: 1px; }
+button.cred-row:hover .cred-mark { opacity: 1; }
+button.cred-row[aria-expanded="true"] .cred-mark { transform: rotate(45deg); opacity: 1; }
+
+/* Rozwijany panel. grid-template-rows 0fr -> 1fr animuje do wysokości
+   treści bez mierzenia pikseli w JS. Starsza przeglądarka, która tego
+   nie animuje, po prostu otworzy panel od razu — nic się nie psuje. */
+.cert-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows .62s var(--ease), opacity .45s var(--ease);
+}
+.cert-panel > .cert-inner { overflow: hidden; min-height: 0; }
+.credentials li[data-cert-open="true"] .cert-panel { grid-template-rows: 1fr; opacity: 1; }
+
+.cert-figure { margin: 24px 0 4px; max-width: 430px; }
+.cert-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--brass-dim);
+  filter: grayscale(.18) contrast(1.02);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -835,30 +901,42 @@ h1 {
   <section class="band wrap reveal" id="recognition" aria-labelledby="h-uznanie">
     <span class="chapter-mark" aria-hidden="true"></span>
     <h2 id="h-recognition">International recognition</h2>
-    <ul class="credentials">
-      <li>
-        <div><span class="cred-title">Mentor</span><span class="cred-org">Kois Center</span></div>
-        <span class="cred-city">Seattle</span>
+    <ul class="credentials" data-cert-base="../certs/" data-cert-alt="Certificate">
+      <li data-cert="kois-center.jpg">
+        <div class="cred-row">
+          <div><span class="cred-title">Mentor</span><span class="cred-org">Kois Center</span></div>
+          <span class="cred-city">Seattle</span>
+        </div>
       </li>
-      <li>
-        <div><span class="cred-title">Certified lecturer</span><span class="cred-org">Curriculum Bicon</span></div>
-        <span class="cred-city">Boston</span>
+      <li data-cert="bicon-curriculum.jpg">
+        <div class="cred-row">
+          <div><span class="cred-title">Certified lecturer</span><span class="cred-org">Curriculum Bicon</span></div>
+          <span class="cred-city">Boston</span>
+        </div>
       </li>
-      <li>
-        <div><span class="cred-title">Advanced surgery</span><span class="cred-org">Steigmann Institute</span></div>
-        <span class="cred-city">Heidelberg</span>
+      <li data-cert="steigmann-institute.jpg">
+        <div class="cred-row">
+          <div><span class="cred-title">Advanced surgery</span><span class="cred-org">Steigmann Institute</span></div>
+          <span class="cred-city">Heidelberg</span>
+        </div>
       </li>
-      <li>
-        <div><span class="cred-title">Soft-tissue masterclass</span><span class="cred-org">Hürzeler/Zuhr Dental Education Institute</span></div>
-        <span class="cred-city">Munich</span>
+      <li data-cert="hurzeler-zuhr.jpg">
+        <div class="cred-row">
+          <div><span class="cred-title">Soft-tissue masterclass</span><span class="cred-org">Hürzeler/Zuhr Dental Education Institute</span></div>
+          <span class="cred-city">Munich</span>
+        </div>
       </li>
-      <li>
-        <div><span class="cred-title">European Implantologist Diploma</span><span class="cred-org">Goethe University (ECTS)</span></div>
-        <span class="cred-city">Frankfurt</span>
+      <li data-cert="goethe-university-ects.jpg">
+        <div class="cred-row">
+          <div><span class="cred-title">European Implantologist Diploma</span><span class="cred-org">Goethe University (ECTS)</span></div>
+          <span class="cred-city">Frankfurt</span>
+        </div>
       </li>
-      <li>
-        <div><span class="cred-title">Airway Mini-Residency</span><span class="cred-org">Sleep and breathing disorder diagnostics</span></div>
-        <span class="cred-city">New Jersey</span>
+      <li data-cert="airway-mini-residency.jpg">
+        <div class="cred-row">
+          <div><span class="cred-title">Airway Mini-Residency</span><span class="cred-org">Sleep and breathing disorder diagnostics</span></div>
+          <span class="cred-city">New Jersey</span>
+        </div>
       </li>
     </ul>
   </section>
@@ -925,6 +1003,97 @@ h1 {
     };
     portrait.addEventListener('error', dropPortrait);
     if (portrait.complete && portrait.naturalWidth === 0) { dropPortrait(); }
+  }
+
+  /* ── certyfikaty rozwijane w sekcji "Uznanie" ─────────────────
+     Zasada jest taka sama jak przy portrecie w HERO: najpierw
+     sprawdzamy, czy plik naprawde sie wczytuje. Wiersz zamienia sie
+     w klikalny przycisk DOPIERO po udanym wczytaniu. Jesli pliku nie
+     ma, wiersz zostaje zwyklym tekstem — bez "+", bez klikania.
+     Dzieki temu wystarczy wrzucic zdjecie do /certs/ i wiersz sam
+     sie uaktywni; nie trzeba nic zmieniac w kodzie. */
+  var credList = document.querySelector('.credentials');
+
+  if (credList) {
+    var certBase  = credList.getAttribute('data-cert-base') || '';
+    var certLabel = credList.getAttribute('data-cert-alt') || 'Certificate';
+
+    var openCert = function (li, btn, panel) {
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      li.setAttribute('data-cert-open', isOpen ? 'false' : 'true');
+      panel.inert = isOpen;
+    };
+
+    var enableCert = function (li, row, file, index, width, height) {
+      var panelId = 'cert-panel-' + (index + 1);
+      var org     = li.querySelector('.cred-org');
+      var title   = li.querySelector('.cred-title');
+      var name    = [title ? title.textContent : '', org ? org.textContent : '']
+                      .filter(Boolean).join(' — ');
+
+      /* <div class="cred-row"> -> <button class="cred-row">, zeby
+         wiersz byl dostepny z klawiatury i czytnika ekranu */
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = row.className;
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', panelId);
+      while (row.firstChild) { btn.appendChild(row.firstChild); }
+
+      var mark = document.createElement('span');
+      mark.className = 'cred-mark';
+      mark.setAttribute('aria-hidden', 'true');
+      btn.appendChild(mark);
+
+      row.parentNode.replaceChild(btn, row);
+      credList.classList.add('has-certs');
+
+      var panel = document.createElement('div');
+      panel.className = 'cert-panel';
+      panel.id = panelId;
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-label', certLabel + ': ' + name);
+      panel.inert = true;
+
+      var inner = document.createElement('div');
+      inner.className = 'cert-inner';
+
+      var figure = document.createElement('figure');
+      figure.className = 'cert-figure';
+
+      var img = document.createElement('img');
+      img.src = certBase + file;
+      img.alt = certLabel + ': ' + name;
+      img.width = width;
+      img.height = height;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      figure.appendChild(img);
+      inner.appendChild(figure);
+      panel.appendChild(inner);
+      li.appendChild(panel);
+
+      btn.addEventListener('click', function () { openCert(li, btn, panel); });
+    };
+
+    Array.prototype.slice.call(credList.querySelectorAll('li[data-cert]'))
+      .forEach(function (li, index) {
+        var file = li.getAttribute('data-cert');
+        var row  = li.querySelector('.cred-row');
+        if (!file || !row) return;
+
+        var probe = new Image();
+        probe.onload = function () {
+          enableCert(li, row, file, index, probe.naturalWidth, probe.naturalHeight);
+        };
+        probe.onerror = function () {
+          /* brak pliku -> wiersz zostaje bez mozliwosci rozwiniecia */
+          li.removeAttribute('data-cert');
+        };
+        probe.src = certBase + file;
+      });
   }
 
   /* ── płynne przewijanie po kliknięciu w szynę ──────────────── */
