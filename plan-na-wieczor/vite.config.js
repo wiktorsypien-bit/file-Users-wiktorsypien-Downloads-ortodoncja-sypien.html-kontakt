@@ -1,0 +1,19 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  root: "client",
+  plugins: [react()],
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001",
+        // web search can take well over a minute end-to-end
+        timeout: 300_000,
+        proxyTimeout: 300_000,
+      },
+    },
+  },
+  build: { outDir: "dist" },
+});
